@@ -32,8 +32,6 @@ type KeyValueTupleToInterface<T extends [string, unknown][]> = {
   [key in T[number][0]]: Extract<T[number], [key, unknown]>[1]
 }
 
-type f = KeyValueTupleToInterface<[['a', string], ['b', number]]>
-
 // Get Values from KeyValueTuple
 type KeyValueTupleToValues<S extends [string, unknown][]> = {
   [i in keyof S]: S[i] extends [string, unknown] ? S[i][1] : never
