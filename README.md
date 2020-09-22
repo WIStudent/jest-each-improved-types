@@ -1,6 +1,22 @@
 # jest-each-improved-types
 Using recursive conditional types from typescript 4.1 to improve typings of table driven jest-each tests.
 
+## Installation
+`npm install -D @wistudent/jest-each-improved-types`
+
+Add it to your tsconfig.json
+```json
+{
+  ...
+  "typeRoots": [
+    "node_modules/@types",
+    "node_modules/@wistudent/jest-each-improved-types"
+  ]
+} 
+```
+
+## Usage
+
 ```typescript
 type Variables = [
   ['note', string],
@@ -8,13 +24,11 @@ type Variables = [
   ['expected', boolean]
 ]
 
-describe('example test', () => {
-  test.each<Variables, 2>`
-  note       | given   | expected
-  ${'true'}  | ${'ok'} | ${true}
-  ${'false'} | ${'Ok'} | ${false}
-  `('$note', ({given, expected}) => {
-    expect(given === 'ok').toBe(expected);
-  });
+test.each<Variables, 2>`
+note       | given   | expected
+${'true'}  | ${'ok'} | ${true}
+${'false'} | ${'Ok'} | ${false}
+`('$note', ({given, expected}) => {
+  expect(given === 'ok').toBe(expected);
 });
 ```
