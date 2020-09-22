@@ -11,7 +11,6 @@ type Rest<S extends unknown[]> = S extends [unknown, ...infer U]
   ? U
   : never
 
-
 type Flat<S extends unknown[][]> = S['length'] extends 0
   ? []
   : S extends [infer T, ...infer U]
