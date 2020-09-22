@@ -13,8 +13,8 @@
     "jest": "^26.4.2",
     "typescript": "^4.1.0-beta"
   },
-  "types": "./types.d.ts",
-  "files": ["./types.d.ts"],
+  "types": "./index.d.ts",
+  "files": ["index.d.ts"],
   "repository": {
     "type": "git",
     "url": "https://github.com/WIStudent/jest-each-improved-types.git"
