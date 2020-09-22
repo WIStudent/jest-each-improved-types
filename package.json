@@ -13,6 +13,10 @@
     "jest": "^26.4.2",
     "typescript": "^4.1.0-beta"
   },
+  "peerDependencies": {
+    "typescript": ">=4.1.x",
+    "@types/jest": "^26.0.14"
+  },
   "types": "./index.d.ts",
   "files": [
     "index.d.ts"
