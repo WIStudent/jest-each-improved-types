@@ -1,4 +1,6 @@
 # jest-each-improved-types
+[![npm version](https://badge.fury.io/js/%40wistudent%2Fjest-each-improved-types.svg)](https://badge.fury.io/js/%40wistudent%2Fjest-each-improved-types)
+
 Using recursive conditional types from typescript 4.1 to improve typings of table driven jest-each tests.
 
 ## Installation
