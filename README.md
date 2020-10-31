@@ -9,10 +9,8 @@ Using recursive conditional types from typescript 4.1 to improve typings of tabl
 Add it to your tsconfig.json
 ```json
 {
-  ...
-  "typeRoots": [
-    "node_modules/@types",
-    "node_modules/@wistudent/jest-each-improved-types"
+  "files": [
+    "node_modules/@wistudent/jest-each-improved-types/index.d.ts"
   ]
 } 
 ```
