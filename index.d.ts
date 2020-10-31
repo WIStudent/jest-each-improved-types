@@ -7,10 +7,6 @@ type _Tuple<T, N extends number, R extends unknown[]> = R['length'] extends N
 type Tuple<T, N extends number> = _Tuple<T, N, []>
 
 // Flatten 2d tuple to 1d tuple
-type Rest<S extends unknown[]> = S extends [unknown, ...infer U] 
-  ? U
-  : never
-
 type Flat<S extends unknown[][]> = S['length'] extends 0
   ? []
   : S extends [infer T, ...infer U]
