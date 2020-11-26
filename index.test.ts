@@ -47,4 +47,4 @@ describe('test types', () => {
   });
 });
 
-export default undefined;
+export default {};

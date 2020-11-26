@@ -5,7 +5,8 @@
   "author": "Tobias Trumm",
   "license": "MIT",
   "scripts": {
-    "check-types": "tsc --noEmit"
+    "check-types": "tsc --noEmit",
+    "test": "jest"
   },
   "devDependencies": {
     "@babel/core": "^7.12.3",
