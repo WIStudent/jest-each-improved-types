@@ -1,6 +1,6 @@
 {
   "name": "@wistudent/jest-each-improved-types",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "description": "Using recursive conditional types from typescript 4.1 to improve typings of table driven jest-each tests.",
   "author": "Tobias Trumm",
   "license": "MIT",
