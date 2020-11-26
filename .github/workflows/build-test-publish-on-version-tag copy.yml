@@ -1,4 +1,4 @@
-name: Build,test and publish on version tag
+name: Build, test and publish on version tag
 
 on:
   push:
