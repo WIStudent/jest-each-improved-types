@@ -4,6 +4,9 @@
   "description": "Using recursive conditional types from typescript 4.1 to improve typings of table driven jest-each tests.",
   "author": "Tobias Trumm",
   "license": "MIT",
+  "scripts": {
+    "check-types": "tsc --noEmit"
+  },
   "devDependencies": {
     "@babel/core": "^7.12.3",
     "@babel/preset-env": "^7.12.1",
