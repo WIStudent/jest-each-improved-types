@@ -12,14 +12,14 @@
     "@babel/core": "^7.12.3",
     "@babel/preset-env": "^7.12.1",
     "@babel/preset-typescript": "^7.12.1",
-    "@types/jest": "^26.0.15",
+    "@types/jest": "^27.0.1",
     "babel-jest": "^27.0.1",
-    "jest": "^27.0.1",
-    "typescript": "^4.1.0-dev.20201031"
+    "jest": "^27.1.1",
+    "typescript": "^4.4.2"
   },
   "peerDependencies": {
-    "typescript": ">=4.1.x",
-    "@types/jest": "^26.0.14"
+    "@types/jest": ">=26.0.14 <28",
+    "typescript": ">=4.1.x"
   },
   "types": "./index.d.ts",
   "files": [
