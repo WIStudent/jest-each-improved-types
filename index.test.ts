@@ -1,4 +1,4 @@
-import { textChangeRangeIsUnchanged } from "typescript";
+import {it, test} from './index'
 
 type Variables = [
   ['var1', string],
@@ -23,7 +23,7 @@ describe('test types', () => {
   var1    | var2    | var3    | var4    | var5    | var6    | var7
   ${var1} | ${var2} | ${var3} | ${var4} | ${var5} | ${var6} | ${var7}
   ${var1} | ${var2} | ${var3} | ${var4} | ${var5} | ${var6} | ${var7}
-  `('new typings: vars should have correct types', ({var1, var2, var3, var4, var5, var6, var7}) => {
+  `('test: new typings: vars should have correct types', ({var1, var2, var3, var4, var5, var6, var7}) => {
     const exp1: string = var1;
     const exp2: number = var2;
     const exp3: boolean = var3;
@@ -33,10 +33,37 @@ describe('test types', () => {
     const exp7: number[] = var7
   });
 
-  test.each`
+  test.each<any>`
+  var1    | var2
+  ${'36'} | ${42}
+  `('test: old typings: var1 should be any', ({var1}) => {
+    const exp1: string = var1;
+    const exp2: number = var1;
+    const exp3: boolean = var1;
+    const exp4: null = var1;
+    const exp5: undefined = var1;
+    const exp6: {} = var1;
+    const exp7: number[] = var1;
+  });
+
+  it.each<Variables, 2>`
+  var1    | var2    | var3    | var4    | var5    | var6    | var7
+  ${var1} | ${var2} | ${var3} | ${var4} | ${var5} | ${var6} | ${var7}
+  ${var1} | ${var2} | ${var3} | ${var4} | ${var5} | ${var6} | ${var7}
+  `('it: new typings: vars should have correct types', ({var1, var2, var3, var4, var5, var6, var7}) => {
+    const exp1: string = var1;
+    const exp2: number = var2;
+    const exp3: boolean = var3;
+    const exp4: null = var4;
+    const exp5: undefined = var5;
+    const exp6: {} = var6;
+    const exp7: number[] = var7
+  });
+
+  it.each<any>`
   var1
   ${'36'}
-  `('old typings: var1 should be any', ({var1}) => {
+  `('it: old typings: var1 should be any', ({var1}) => {
     const exp1: string = var1;
     const exp2: number = var1;
     const exp3: boolean = var1;

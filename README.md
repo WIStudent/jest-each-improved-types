@@ -6,25 +6,29 @@ Using recursive conditional types from typescript 4.1 to improve typings of tabl
 ## Installation
 `npm install -D @wistudent/jest-each-improved-types`
 
-Add it to your tsconfig.json
-```json
-{
-  "files": [
-    "node_modules/@wistudent/jest-each-improved-types/index.d.ts"
-  ]
-} 
-```
 
 ## Usage
 
 ```typescript
+import {it, each} from "@wistudent/jest-each-improved-types"
+
 type Variables = [
   ['note', string],
   ['given', string],
   ['expected', boolean]
 ]
 
+// using test
 test.each<Variables, 2>`
+note       | given   | expected
+${'true'}  | ${'ok'} | ${true}
+${'false'} | ${'Ok'} | ${false}
+`('$note', ({given, expected}) => {
+  expect(given === 'ok').toBe(expected);
+});
+
+// using it
+test.it<Variables, 2>`
 note       | given   | expected
 ${'true'}  | ${'ok'} | ${true}
 ${'false'} | ${'Ok'} | ${false}

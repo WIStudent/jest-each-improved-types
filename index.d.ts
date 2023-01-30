@@ -1,3 +1,5 @@
+import type {Global} from '@jest/types'
+
 // Create Tuple with N times type T
 type _Tuple<T, N extends number, R extends unknown[]> = R['length'] extends N
   ? R
@@ -30,12 +32,22 @@ type KeyValueTupleToValues<S extends [string, unknown][]> = {
   [i in keyof S]: S[i] extends [string, unknown] ? S[i][1] : never
 }
 
-declare namespace jest {
-  interface Each {
-    <T extends [string, unknown][], N extends number>(strings: TemplateStringsArray, ...placeholders: TupleNTimes<KeyValueTupleToValues<T>, N>): (
+type Each = Global.It["each"] & {
+  <T extends [string, unknown][], N extends number>(strings: TemplateStringsArray, ...placeholders: TupleNTimes<KeyValueTupleToValues<T>, N>): (
       name: string,
-      fn: (arg: KeyValueTupleToInterface<T>) => any,
+      fn: (arg: KeyValueTupleToInterface<T>) => ReturnType<Global.TestFn>,
       timeout?: number
-    ) => void;
-  }
+  ) => void;
 }
+
+interface It extends Global.It  {
+  each: Each
+}
+
+interface Test extends Global.Test {
+  each: Each
+}
+
+export * from '@jest/globals';
+export declare const it: It;
+export declare const test: Test;

@@ -1,3 +1,5 @@
+import {it, test} from './index'
+
 type Variables = [
   ['note', string],
   ['given', string],
@@ -6,6 +8,14 @@ type Variables = [
 
 describe('example test', () => {
   test.each<Variables, 2>`
+  note       | given   | expected
+  ${'true'}  | ${'ok'} | ${true}
+  ${'false'} | ${'Ok'} | ${false}
+  `('$note', ({given, expected}) => {
+    expect(given === 'ok').toBe(expected);
+  });
+
+  it.each<Variables, 2>`
   note       | given   | expected
   ${'true'}  | ${'ok'} | ${true}
   ${'false'} | ${'Ok'} | ${false}
