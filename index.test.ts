@@ -46,6 +46,10 @@ describe('test types', () => {
     const exp7: number[] = var1;
   });
 
+  test("Test without each", () => {
+    expect(true).toBe(true);
+  })
+
   it.each<Variables, 2>`
   var1    | var2    | var3    | var4    | var5    | var6    | var7
   ${var1} | ${var2} | ${var3} | ${var4} | ${var5} | ${var6} | ${var7}
@@ -72,6 +76,10 @@ describe('test types', () => {
     const exp6: {} = var1;
     const exp7: number[] = var1;
   });
+
+  it('it without each', () => {
+    expect(true).toBe(true);
+  })
 });
 
 export default {};

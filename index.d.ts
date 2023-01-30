@@ -40,11 +40,11 @@ type Each = Global.It["each"] & {
   ) => void;
 }
 
-interface It extends Global.It  {
+interface It extends Global.ItConcurrent  {
   each: Each
 }
 
-interface Test extends Global.Test {
+interface Test extends Global.ItConcurrent {
   each: Each
 }
 
