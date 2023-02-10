@@ -28,7 +28,7 @@ ${'false'} | ${'Ok'} | ${false}
 });
 
 // using it
-test.it<Variables, 2>`
+it.each<Variables, 2>`
 note       | given   | expected
 ${'true'}  | ${'ok'} | ${true}
 ${'false'} | ${'Ok'} | ${false}
