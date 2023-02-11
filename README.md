@@ -40,4 +40,4 @@ ${'1'} | ${2} | ${false}
 });
 ```
 
-Instead of using an interface as the generic argument, a tuple of Key-Type pairs and the number of rows is used. Using a value with the wrong type inside the table, or the number of values not being $(\text{Number of Key-Type pairs} * \text{Declared number of rows})$, will result in a typescript error.
+Instead of using an interface as the generic argument, a tuple of Key-Type pairs and the number of rows is used. Using a value with the wrong type inside the table, or the number of values not being (*Number of Key-Type pairs* * *Declared number of rows*), will result in a typescript error.
