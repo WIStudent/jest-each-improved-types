@@ -32,22 +32,57 @@ type KeyValueTupleToValues<S extends [string, unknown][]> = {
   [i in keyof S]: S[i] extends [string, unknown] ? S[i][1] : never
 }
 
-type Each = Global.It["each"] & {
+type NewEach<EachFn extends Global.TestFn | Global.BlockFn> = {
   <T extends [string, unknown][], N extends number>(strings: TemplateStringsArray, ...placeholders: TupleNTimes<KeyValueTupleToValues<T>, N>): (
-      name: string,
-      fn: (arg: KeyValueTupleToInterface<T>) => ReturnType<Global.TestFn>,
-      timeout?: number
+    name: string,
+    fn: (arg: KeyValueTupleToInterface<T>) => ReturnType<EachFn>,
+    timeout?: number
   ) => void;
 }
 
-interface It extends Global.ItConcurrent  {
-  each: Each
+type EachConcurrentTestFn = Global.ItConcurrentBase['each'] & NewEach<Global.ConcurrentTestFn>
+type EachTestFn = Global.ItBase['each'] & NewEach<Global.TestFn>
+type EachBlockFn = Global.DescribeBase['each'] & NewEach<Global.BlockFn>
+
+interface Failing<EachFn> {
+  each: EachFn;
 }
 
-interface Test extends Global.ItConcurrent {
-  each: Each
+interface ItBase {
+  each: EachTestFn;
+  failing: Failing<EachTestFn>;
 }
+
+interface It extends ItBase {
+  only: ItBase;
+  skip: ItBase;
+}
+
+interface ItConcurrentBase {
+  each: EachConcurrentTestFn;
+  failing: Failing<EachConcurrentTestFn>
+}
+
+interface ItConcurrentExtended extends ItConcurrentBase {
+  only: ItConcurrentBase;
+  skip: ItConcurrentBase;
+}
+
+interface ItConcurrent extends It {
+  concurrent: ItConcurrentExtended
+}
+
+interface DescribeBase {
+  each: EachBlockFn
+}
+
+interface Describe extends DescribeBase {
+  only: DescribeBase;
+  skip: DescribeBase;
+}
+
 
 export * from '@jest/globals';
-export declare const it: It;
-export declare const test: Test;
+export declare const it: ItConcurrent & Global.ItConcurrent;
+export declare const test: ItConcurrent & Global.ItConcurrent;
+export declare const describe: Describe & Global.Describe;
