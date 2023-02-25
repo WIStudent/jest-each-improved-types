@@ -1,0 +1,36 @@
+name: Release Please
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  release-please:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      pull-requests: write
+    steps:
+      - uses: google-github-actions/release-please-action@v3
+        id: release-please
+        with:
+          release-type: node
+          package-name: "@wistudent/jest-each-improved-types"
+
+      - if: ${{ steps.release-please.outputs.release_created }}
+        uses: actions/setup-node@v3
+        with:
+          node-version-file: .nvmrc
+          registry-url: 'https://registry.npmjs.org'
+
+      - if: ${{ steps.release-please.outputs.release_created }}
+        run: npm ci
+
+      - if: ${{ steps.release-please.outputs.release_created }}
+        run: npm run test
+
+      - if: ${{ steps.release-please.outputs.release_created }}
+        run: npm publish
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
